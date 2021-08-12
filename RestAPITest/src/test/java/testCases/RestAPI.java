@@ -30,12 +30,12 @@ public class RestAPI {
         String responseInString = response.asString();
         System.out.println(responseInString);
 
-        // Using the userID, get the user’s associated posts and
+        // Using the userID, get posts 
         JsonPath jsonPath = new JsonPath(responseInString);
         String userPosts = jsonPath.getString("title");
         System.out.println(userPosts);
 
-        // verify the Posts contain valid Post IDs (an Integer between 1 and 100).
+        // verify Posts contain valid Post IDs (an Integer between 1 and 100).
         String postId = response.asString();
         System.out.println(postId);
         response.then().assertThat().body("id", everyItem(allOf(greaterThanOrEqualTo(1), lessThanOrEqualTo(100))));
